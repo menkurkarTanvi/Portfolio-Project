@@ -1,8 +1,8 @@
 # Portfolio Part 1: Component Brainstorming
 
-- **Name**: <!-- TODO: fill with first and last name (e.g., Brutus Buckeye) then delete this comment -->
-- **Dot Number**: <!-- TODO: fill with OSU dot number (e.g., buckeye.17) then delete this comment -->
-- **Due Date**: <!-- TODO: fill with due date and time (e.g., 10/17 @ 3:10 PM EST) then delete this comment -->
+- **Name**: Tanvi Menkurkar
+- **Dot Number**: menkurkar.1
+- **Due Date**: 9/16 @ 3pm
 
 ## Assignment Overview
 
@@ -98,11 +98,11 @@ do good work.
 > brainstorming. Plus it helps us get to know you better! Feel free to share
 > images in this section.
 
-<!-- TODO: briefly talk about your interests then delete this comment.
-Also, protip: you can preview what your response looks like by hitting
-the magnifying glass icon in the upper-right corner or pressing CTRL+K and
-then V. This kind of button combination is called a chord, for whatever
-reason -->
+Hi my name is Tanvi Menkurkar. I am passionate about Computer Science and
+technology and want to work in a computer science related field
+(possibly artificial intelligence of Sofware Engineering). Some of my personal
+hobbies include reading, playing tennis, playing the piano, drawing,
+and working out.
 
 ## Assignment
 
@@ -192,70 +192,97 @@ will likely refine your design to make your implementation easier to use.
 
 > Please use this section to share your designs.
 
-- Component Design #1: <!-- TODO: give component a name then delete this comment -->
+- Component Design #1: Library
   - **Description**:
-    - <!-- TODO: describe your component then delete this comment -->
+    - Models a real life library
   - **Kernel Methods**:
-    - <!-- TODO: list kernel methods then delete this comment -->
+    - addBook() --> adds book to library
+    - removeBook() --> removes book from library
+    - totalBooks() --> returns total number of books
+    - arrangeAlphabetically() --> arranges books alphabetically
   - **Secondary Methods**:
-    - <!-- TODO: list secondary methods then delete this comment -->
+    - booksGenre() --> returns a list of books in that genre
+    - book(String, title, String author) --> returns books with corresponding
+    author and title
+    - insertMultipleBooks() --> inserts books into the previous sequence of
+    books
   - **Additional Considerations** (*note*: "I don't know" is an acceptable
     answer for each of the following questions):
     - Would this component be mutable? Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - Yes since this component inherits from Standard.
     - Would this component rely on any internal classes (e.g., `Map.Pair`)?
       Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - Possibly a map where each book in the sequence is a map containing
+      a title and author. Also might utilize Sequence or List.
     - Would this component need any enums or constants (e.g.,
       `Program.Instruction`)? Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - I am not sure yet.
     - Can you implement your secondary methods using your kernel methods?
       Answer, explain, and give at least one example:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - For insert multiple books, you would have to use the kernel method
+      addBook to add the list of books in a sequence. You would have to
+      then arrange this sequence alphabetically using the arrangeAlphabetically
+      kernel method before adding that list to the all the books in the library.
 
-
-- Component Design #2: <!-- TODO: give component a name then delete this comment -->
+- Component Design #2: Bank Account
   - **Description**:
-    - <!-- TODO: describe your component then delete this comment -->
+    Models areal life banking account
   - **Kernel Methods**:
-    - <!-- TODO: list kernel methods then delete this comment -->
+     - withdraw(int amount) --> withdraw a certain amount from account
+    - deposit(int amount) --> deposit a certain amount into account
+    - totalAmountInAccount() --> returns how much money is in your account
+    - time() --> returns the time passed since first deposit
+
   - **Secondary Methods**:
-    - <!-- TODO: list secondary methods then delete this comment -->
+    - simpleInterest(int annualInterest, int deposit) --> calculate simple interest
+    - compoundInterest() --> calculate compound interest
+    - accountHistory() --> returns a history of withdrawals and deposits
   - **Additional Considerations** (*note*: "I don't know" is an acceptable
     answer for each of the following questions):
     - Would this component be mutable? Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - Yes since it would inherit from Standard
     - Would this component rely on any internal classes (e.g., `Map.Pair`)?
       Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - Maybe a map for the accountHistory() to model the time and action
     - Would this component need any enums or constants (e.g.,
       `Program.Instruction`)? Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - I am not sure, maybe constants for interest rates.
     - Can you implement your secondary methods using your kernel methods?
       Answer, explain, and give at least one example:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - Yes, the simpleInterest() method would use the time() kernel
+      method to determine the accumalated simple interest.
 
 
-- Component Design #3: <!-- TODO: give component a name then delete this comment -->
+- Component Design #3: Music Playlist
   - **Description**:
-    - <!-- TODO: describe your component then delete this comment -->
+    - Models a music playist and allows the user to add songs, remove
+    songs, and make other modifications to the playist.
   - **Kernel Methods**:
-    - <!-- TODO: list kernel methods then delete this comment -->
+    - addSong() --> Adds song to end of playist
+    - removeSong() --> removes and returns song at the end of the playist
+    - playlistLenght() --> returns the length of the playist
   - **Secondary Methods**:
-    - <!-- TODO: list secondary methods then delete this comment -->
+    - mergePlaylists(Playlist p) --> appends one playist to another
+    - flipPlaylist() --> flips the playlist
+    - firstSong() --> reports the first song in the playlist
+    - randomizePlaylist() --> randomizes songs in playlist
+
   - **Additional Considerations** (*note*: "I don't know" is an acceptable
     answer for each of the following questions):
     - Would this component be mutable? Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - Yes, this component is mutable since it inherits from Standard.
     - Would this component rely on any internal classes (e.g., `Map.Pair`)?
       Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - No, this component would not rely on any internal classes because
+      this component is closely related to a queue.
     - Would this component need any enums or constants (e.g.,
       `Program.Instruction`)? Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - Not sure
     - Can you implement your secondary methods using your kernel methods?
       Answer, explain, and give at least one example:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - For the flipPlaylist() method, you would have to use the removeSong()
+      method to remove the songs, then use the addSong to add them to
+      another playlist.
 
 ## Post-Assignment
 
