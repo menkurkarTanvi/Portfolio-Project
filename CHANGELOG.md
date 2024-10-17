@@ -13,3 +13,15 @@ the following form: YYYY.0M.0D.
 - Designed a Library component
 - Designed a Bank Account component
 - Designed a Music Playlist component
+
+
+## 2025.10.03
+
+### Added
+
+- Designed a proof of concept for TBR list component
+
+### Updated
+
+- Changed design to include possible methods, instance variables, and fields demonstrating a possible
+representation.

@@ -6,8 +6,6 @@
 
 ## Assignment Overview
 
-<!-- TODO: read the assignment overview then delete this comment -->
-
 The overall goal of the portfolio project is to have you design and implement
 your own OSU component. There are no limits to what you choose to design and
 implement, but your component must fit within the constraints of our software
@@ -29,7 +27,6 @@ implement.
 
 ## Assignment Checklist
 
-<!-- TODO: browse the checklist then delete this comment -->
 
 To be sure you have completed everything on this assignment, we have littered
 this document with TODO comments. You can browse all of them in VSCode by
@@ -52,7 +49,6 @@ to the tree diagram (you may remove this one as well):
 
 ## Assignment Learning Objectives
 
-<!-- TODO: read the assignment learning objectives then delete this comment -->
 
 Without learning objectives, there really is no clear reason why a particular
 assessment or activity exists. Therefore, to be completely transparent, here is
@@ -67,7 +63,6 @@ project. Specifically, students should be able to:
 
 ## Assignment Rubric: 10 Points
 
-<!-- TODO: read the assignment rubric then delete this comment -->
 
 Again, to be completely transparent, most of the portfolio project, except the
 final submission, is designed as a formative assessment. Formative assessments
@@ -106,7 +101,6 @@ and working out.
 
 ## Assignment
 
-<!-- TODO: read the assignment section then delete this comment -->
 
 As previously stated, you are tasked with brainstorming 3 possible components.
 To aid you in this process, we have provided [some example components][example-components]
@@ -114,7 +108,6 @@ that may help you in your brainstorming. All of these components were made at
 some point by one of your peers, so you should feel confident that you can
 accomplish any of them.
 
-<!-- TODO: browse the list of possible projects then delete this comment -->
 
 There is no requirement that you use any of the components listed above.
 If you want to model something else, go for it! Very common early object
@@ -124,7 +117,6 @@ you're just brainstorming right now. You do not have to commit to anything.
 
 ### Example Component
 
-<!-- TODO: review this example component then delete this comment -->
 
 To help you brainstorm a few components, we've provided an example below of a
 component you already know well: NaturalNumber. We highly recommend that you
@@ -244,6 +236,7 @@ will likely refine your design to make your implementation easier to use.
     - Would this component rely on any internal classes (e.g., `Map.Pair`)?
       Answer and explain:
       - Maybe a map for the accountHistory() to model the time and action
+      (either withdrawal or deposit).
     - Would this component need any enums or constants (e.g.,
       `Program.Instruction`)? Answer and explain:
       - I am not sure, maybe constants for interest rates.
@@ -256,11 +249,11 @@ will likely refine your design to make your implementation easier to use.
 - Component Design #3: Music Playlist
   - **Description**:
     - Models a music playist and allows the user to add songs, remove
-    songs, and make other modifications to the playist.
+    songs, and make other modifications to the playlist.
   - **Kernel Methods**:
     - addSong() --> Adds song to end of playist
-    - removeSong() --> removes and returns song at the end of the playist
-    - playlistLenght() --> returns the length of the playist
+    - removeSong() --> removes and returns song at the end of the playlist
+    - playlistLenght() --> returns the length of the playlist
   - **Secondary Methods**:
     - mergePlaylists(Playlist p) --> appends one playist to another
     - flipPlaylist() --> flips the playlist
@@ -291,7 +284,6 @@ completed the assignment.
 
 ### Changelog
 
-<!-- TODO: create CHANGELOG then delete this comment -->
 
 At the end of every assignment, you should update the
 [CHANGELOG.md](../../CHANGELOG.md) file found in the root of the project folder.
@@ -330,8 +322,6 @@ of development.
 
 ### Submission
 
-<!-- TODO: read the submission instructions then delete this comment -->
-
 If you have completed the assignment using this template, we recommend that
 you convert it to a PDF before submission. If you're not sure how, check out
 this [Markdown to PDF guide][markdown-to-pdf-guide]. However, PDFs should be
@@ -340,11 +330,9 @@ all your work is there before submitting. For future assignments, you will
 just be submitting a link to a pull request. This will be the only time
 you have to submit any PDFs.
 
-<!-- TODO: upload a PDF of this document and the CHANGELOG to Carmen then delete this comment -->
 
 ### Peer Review
 
-<!-- TODO: review the peer review guidelines then delete this comment -->
 
 Following the completion of this assignment, you will be assigned three
 students' component brainstorming assignments for review. Your job during the
