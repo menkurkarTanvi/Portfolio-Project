@@ -1,0 +1,67 @@
+Interface 1: Kernel Interface
+
+void removeBookFromShelf(String genre, String title)
+  Removes the book with genre and title from the two dimensonal hash-table and adds it to the stack of listOfBooksInProgress
+  Parameters:
+  genre - the genre of the book
+  title - the title of the book
+  Updates:
+  Map<String,Map<String,String>>[][] hashTable;
+  Stack<Map<String,String>> listOfBooksInProgress
+  int numberOfBooksInProgress
+  Requires:
+  i >= 0
+  Ensures:
+  this = i
+
+void addBookToShelf(String genre, String title, String author)
+  Adds book to shelf with genre, title, author
+  Parameters:
+  genre - the genre of the book
+  title - the title of the book
+  author - the author of the book
+  Updates:
+   Map<String,Map<String,String>>[][] hashTable;
+  Requires:
+  The hashTable does not already contain the book
+  Ensures:
+  Map<String,Map<String,String>>[][] hashTable contains book with genre, title author
+
+boolean shelfContainsBook(String genre, String title)
+  Returns whether or not the book shelf contains the book with genre, title
+  Parameters:
+  genre - genre of the book 
+  title - title of the book
+  Returns:
+  true if the book is in the shelf, false if it is not
+  Requires:
+  i >= 0
+
+String removeFromListOfBooksInProgress(String genre, String title)
+  Removes the book from the stack of books in progress with the corresponding genre and title
+  Parameters:
+  genre - genre of the book 
+  title - title of the book
+  Returns:
+  the title of the book that was removed from the stack
+  Requires:
+  The stack contains the book with the genre and title
+  Updates:
+  Stack<Map<String,String>> booksInProgress
+
+
+Interface 1: Secondary Interface
+
+void removeFromListOfBooksInProgress(String genre, String title)
+  Removes the book from the stack of books in progress with the corresponding genre and title
+  Parameters:
+  genre - genre of the book 
+  title - title of the book
+  Returns:
+  the title of the book that was removed from the stack
+  Requires:
+  The stack contains the book with the genre and title
+  Updates:
+  Stack<Map<String,String>> booksInProgress
+
+
