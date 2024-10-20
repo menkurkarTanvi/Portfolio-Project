@@ -4,19 +4,23 @@ instance variables
   int numberOfBooksToRead;
   int numberOfBooksCompleted;
   int numberOfBooksInProgress;
-  List<String> listOfBooksInProgress;
+  Stack<Map<String,String>> listOfBooksInProgress;
   int numberOfBooksDNF;
   String genreOfLastBookRead;
   boolean reachedReached;
   Map<String,Map<String,String>>[][] hashTable;
   
-  removeBookFromList(String genre, String title){}
+  removeBookFromShelf(String genre, String title){}
     Using the genre and the title of the book, this method will remove the book from the hash table. This method will 
     likely use the remove method from the Map component. This method will also add the book to the listOfBooksInProgress list. 
 
-  addBookToList(String genre, String title, String author){}
+  addBookToShelf(String genre, String title, String author){}
     Using the genere and title of the book, the books will be inserted in a particular locatio in the 2-D hash table. 
     This method will use the add method from the Map component. 
+
+  removeFromListOfBooksInProgress(String title, boolean completed){}
+        removes book from the list of books in progress. If completed, updateNumberOfBooksCompleted. 
+        Otherwise, updatesNumberOfBooksDNF. 
 
   shelfContainsBook(String genre, String title, String author){}
       This method will search the shelf to see if it contains the book. If it does not, it will user if they want to add
