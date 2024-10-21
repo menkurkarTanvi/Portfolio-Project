@@ -121,7 +121,17 @@ hierarchy diagram using whatever tools you would like. Then, include a picture
 of it in this folder. You may also embed it just below using markdown syntax
 (i.e., `[ALT TEXT](path/to/file)`).
 
-<!-- TODO: make a diagram of your component hierarchy then delete this comment -->
+Hiearchy Diagram
+
+                              Standard
+                                 |
+                           TBR-List Kernel (Interface)
+                                 |
+                           TBR-List (Interface)
+                                 |
+                           TBR-List Secondary (Abstract Class)
+                                 |
+                           TBR-List1L (Class)
 
 To start making your interfaces, make a branch off of main in your new repo
 called something like `interfaces`. There are many ways to do this, but my
@@ -201,8 +211,6 @@ request merge (or at least tag your commits). This is not required.
 
 ### Submission
 
-<!-- TODO: read the submission instructions then delete this comment -->
-
 Assuming that your project is in a GitHub repo somewhere and your changes are on
 a proof-of-concept branch, then what we'll want you to do is create a pull
 request of all your changes. Pull requests are pretty easy to make if you're
@@ -215,6 +223,10 @@ form ready to complete. Give your pull request a good title like "Completed Part
 If all goes well, you should have a pull request that you can submit to Carmen
 via its URL. The URL should be in the form:
 `https://github.com/username/repo-name/pull/#`
+
+My pull request
+https://github.com/menkurkarTanvi/Portfolio-Project/pull/2#issue-2603475542
+
 
 **Note**: you are the owner of the repo, so you are not required to wait for
 feedback before merging. After all, the main purpose of the pull request is to
@@ -251,7 +263,6 @@ If you'd like to give feedback for this assignment (or any assignment, really),
 make use of [this survey][survey]. Your feedback helps make assignments
 better for future students.
 
-<!-- TODO: follow the link to share your feedback then delete this comment -->
 
 [markdown-to-pdf-guide]: https://therenegadecoder.com/blog/how-to-convert-markdown-to-a-pdf-3-quick-solutions/
 [pottery-fails]: https://www.youtube.com/shorts/Kqb9l113F_0?feature=share
