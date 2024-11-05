@@ -131,7 +131,7 @@ Hiearchy Diagram
                                  |
                            TBR-List Secondary (Abstract Class)
                                  |
-                           TBR-List1L (Class)
+                           TBR -List1L (Class)
 
 To start making your interfaces, make a branch off of main in your new repo
 called something like `interfaces`. There are many ways to do this, but my
