@@ -3,7 +3,7 @@ import components.map.Map1L;
 import components.stack.Stack;
 import components.stack.Stack1L;
 
-public abstract class BookShelfSecondary implements BookShelfList {
+public abstract class BookShelfSecondary implements BookShelf {
 
     @Override
     public int hashCode() {
