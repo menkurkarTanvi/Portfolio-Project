@@ -36,4 +36,4 @@ representation.
 
 ### Added
 
-- Designed the abstract class for my component
+- Designed abstract class for BookShelf component
