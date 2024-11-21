@@ -1,7 +1,4 @@
-import components.map.Map;
-import components.map.Map1L;
-import components.stack.Stack;
-import components.stack.Stack1L;
+import java.util.Map;
 
 public abstract class BookShelfSecondary implements BookShelf {
 
@@ -12,7 +9,7 @@ public abstract class BookShelfSecondary implements BookShelf {
         int hashCode = 0;
         while (len > 0) {
             char c = this.substring(i, i + 1);
-            hasCode += c * (Math.pow(n, len - 1));
+            hashCode += c * (Math.pow(n, len - 1));
             n--;
             len--;
         }
@@ -28,7 +25,7 @@ public abstract class BookShelfSecondary implements BookShelf {
     @Override
     public boolean equals(BookShelf b) {
         int i = 0;
-        boolea areEqual = true;
+        boolean areEqual = true;
         while (!b.isEmpty() && areEqual) {
             Map.Pair<String, Map.Pair<String, String>> book = b.removeAnyBook();
             if (!this.shelfContainsBook(book.genre(),
