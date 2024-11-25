@@ -20,11 +20,21 @@ public abstract class BookShelfSecondary implements BookShelf {
     @Override
     public String toString() {
         this.displayShelf();
+        return "";
     }
 
     @Override
-    public boolean equals(BookShelf b) {
-        int i = 0;
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof BookShelfSecondary)) {
+            return false;
+        }
+        BookShelf<?> b = (BookShelf<?>) obj;
         boolean areEqual = true;
         while (!b.isEmpty() && areEqual) {
             Map.Pair<String, Map.Pair<String, String>> book = b.removeAnyBook();
