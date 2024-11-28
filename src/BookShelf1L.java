@@ -3,7 +3,7 @@ import java.util.Stack;
 
 /**
  * {@code Bookshelf} represented as as a two dimensional Map array where the
- * value of the map is also a map
+ * value of the map is also a map. Each map object store the genre, title, and author of the book
  *
  * @convention this.bookShelf is an array of Map objects that contain the genre
  *             of the book and another map object that contains the title and
@@ -33,7 +33,9 @@ public class BookShelf1L extends BookShelfSecondary {
      * Keeps track of the number of books in the shelf
      */
     private int numberOfBooksInShelf = 0;
-
+    /*
+     * Stores the books that the user is currently reading
+     */
     private Stack<Map<String, Map<String, String>>> listOfBooksInProgress;
     /*
      * Number of Books the User Wants to Read
@@ -84,9 +86,10 @@ public class BookShelf1L extends BookShelfSecondary {
      * Constructor creates a array based on specified rows and columns and
      * initializes the number of books the user wants to read
      *
-     * @param hashTableSize
-     *            size of hash table
-     * @requires hashTableSize > 0
+     * @param rowSize
+     *            length of the rows of bookShelf
+     * @param colSize
+     *            length of columns of bookShelf
      * @ensures this = {}
      */
     public BookShelf1L(int rowSize, int colSize, int numBooksToRead) {
