@@ -5,10 +5,10 @@ import java.util.Stack;
  * {@code Bookshelf} represented as as a two dimensional Map array where the
  * value of the map is also a map
  *
- * @convention <pre> this.bookShelf is an array of Map objects that contain the
- *             genre of the book and another map object that contains the title
- *             and author of the book.
- * @correspondence <pre> this = this.bookShelf
+ * @convention this.bookShelf is an array of Map objects that contain the genre
+ *             of the book and another map object that contains the title and
+ *             author of the book.
+ * @correspondence this = this.bookShelf
  *
  */
 public class BookShelf1L extends BookShelfSecondary {
@@ -102,13 +102,9 @@ public class BookShelf1L extends BookShelfSecondary {
     public final void transferFrom(BookShelf source) {
         assert source != null : "Violation of: source is not null";
         assert source != this : "Violation of: source is not this";
-        assert source instanceof Map4<?, ?> : ""
-                + "Violation of: source is of dynamic type Map4<?,?>";
-        /*
-         * This cast cannot fail since the assert above would have stopped
-         * execution in that case: source must be of dynamic type Map4<?,?>, and
-         * the ?,? must be K,V or the call would not have compiled.
-         */
+        assert source instanceof BookShelf1L<?, ?> : ""
+                + "Violation of: source is of dynamic type BookShelf1L<?,?>";
+
         BookShelf1L localSource = (BookShelf1L) source;
         this.bookShelf = localSource.bookShelf;
         this.numberOfBooksToRead = localSource.numberOfBooksToRead;
@@ -225,6 +221,9 @@ public class BookShelf1L extends BookShelfSecondary {
             Map<String, Map<String, String>> b2 = s.pop();
             this.listOfBooksInProgress.push(b2);
         }
+        this.numberOfBooksInProgress--;
+        this.numberOfBooksRead++;
+        this.numberOfBooksToRead--;
     }
 
     /*
@@ -260,6 +259,10 @@ public class BookShelf1L extends BookShelfSecondary {
 
     public String author(Map<String, String> titleAuthor) {
         return titleAuthor.removeAny.value();
+    }
+
+    public void createNewGoal(int numBooksToRead) {
+        this.numberOfBooksToRead = numBooksToRead;
     }
 
 }

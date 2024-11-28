@@ -111,7 +111,10 @@ do good work.
 > discuss how that representation will be restricted (i.e., by convention)
 > and interpreted (i.e., by correspondence).
 
-<!-- TODO: select a representation and explain why -->
+BookShelf is a two dimensional array containing Maps. The Key of each
+map contains the genre of the book, the value of the map contains a another map
+of two Strings that hold the title of the book and the author. Each column
+of the bookShelf contains books of the same genre.
 
 > To start making your kernel implementation, make a branch off of main in your
 > new repo called something like `kernel-implementation`. There are many ways to
@@ -154,7 +157,6 @@ completed the assignment.
 
 ### Changelog
 
-<!-- TODO: update CHANGELOG then delete this comment -->
 
 At the end of every assignment, you should update the
 [CHANGELOG.md](../../CHANGELOG.md) file found in the root of the project folder.
