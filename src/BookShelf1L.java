@@ -3,7 +3,8 @@ import java.util.Stack;
 
 /**
  * {@code Bookshelf} represented as as a two dimensional Map array where the
- * value of the map is also a map. Each map object store the genre, title, and author of the book
+ * value of the map is also a map. Each map object store the genre, title, and
+ * author of the book
  *
  * @convention this.bookShelf is an array of Map objects that contain the genre
  *             of the book and another map object that contains the title and
@@ -44,7 +45,7 @@ public class BookShelf1L extends BookShelfSecondary {
     /*
      * Number of Books the user has read
      */
-    private in numberOfBooksRead;
+    private int numberOfBooksRead;
     /*
      * Number of books the user is currently reading
      */
