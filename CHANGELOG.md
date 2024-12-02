@@ -31,3 +31,15 @@ representation.
 ### Added
 
 - Designed kernel and enhanced interfaces for TBR-List component
+
+## 2024.11.17
+
+### Added
+
+- Designed abstract class for BookShelf component
+
+## 2024.11.27
+
+### Added
+
+- Implemented Kernel class for my component
