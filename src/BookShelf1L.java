@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
 
@@ -47,7 +48,7 @@ public class BookShelf1L extends BookShelfSecondary {
     /*
      * Number of Books the user has read
      */
-    private in numberOfBooksRead;
+    private int numberOfBooksRead;
     /*
      * Number of books the user is currently reading
      */
@@ -63,7 +64,7 @@ public class BookShelf1L extends BookShelfSecondary {
     @SuppressWarnings("unchecked")
     private void createNewRep(int rowSize, int colSize, int numBooksToRead) {
 
-        this.bookShelf = new Map<String, Map<String, String>>[rowSize][colSize];
+        this.bookShelf = new HashMap<String, Map<String, String>>[rowSize][colSize];
         for (int i = 0; i < this.bookShelf.length; i++) {
             for (int j = 0; j < this.bookShelf[0].length; j++) {
                 this.bookShelf[i][j] = new Map1L<String, Map<String, String>>();
@@ -102,8 +103,25 @@ public class BookShelf1L extends BookShelfSecondary {
     }
 
     /*
-     * TransferFrom
+     * Standard methods -------------------------------------------------------
      */
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public final BookShelf1L newInstance() {
+        try {
+            return this.getClass().getConstructor().newInstance();
+        } catch (ReflectiveOperationException e) {
+            throw new AssertionError(
+                    "Cannot construct object of type " + this.getClass());
+        }
+    }
+
+    @Override
+    public final void clear() {
+        this.createNewRep(DEFAULT_ROW_SIZE, DEFAULT_COLUMN_SIZE, 0);
+    }
+
     @Override
     public final void transferFrom(BookShelf source) {
         assert source != null : "Violation of: source is not null";
@@ -117,10 +135,12 @@ public class BookShelf1L extends BookShelfSecondary {
         localSource.createNewRep(DEFAULT_ROW_SIZE, DEFAULT_COLUMN_SIZE, 0);
     }
 
+    @Override
     public Map<String, Map<String, String>>[][] displayShelf() {
         return this.bookShelf;
     }
 
+    @Override
     public boolean isEmpty() {
         boolean shelfEmpty = true;
         for (int i = 0; i < this.bookShelf.length; i++) {
@@ -133,7 +153,8 @@ public class BookShelf1L extends BookShelfSecondary {
         return shelfEmpty;
     }
 
-    public boolean numBooksInRow(int row) {
+    @Override
+    public int numBooksInRow(int row) {
         int numBooksInRow = 0;
         boolean emptyBook = false;
         for (int i = 0; i < this.bookShelf[row].length && !emptyBook; i++) {
@@ -147,10 +168,12 @@ public class BookShelf1L extends BookShelfSecondary {
         return numBooksInRow;
     }
 
+    @Override
     public int lengthOfShelf() {
         return this.bookShelf[0].length;
     }
 
+    @Override
     public void updateShelfSize(int newRowSize, int newColSize) {
         BookShelf b = new BookShelf1L(newRowSize, newColSize,
                 this.numberOfBooksToRead);
@@ -163,6 +186,7 @@ public class BookShelf1L extends BookShelfSecondary {
 
     }
 
+    @Override
     public Map<String, Map<String, String>> removeAnyBook() {
         Map<String, Map<String, String>> book = new Map1L<>();
         while (book.size() == 0) {
@@ -173,6 +197,7 @@ public class BookShelf1L extends BookShelfSecondary {
         return book;
     }
 
+    @Override
     public boolean shelfContainsBooks(String genre, String title) {
         boolean containsBook = false;
         int row = genre.hashCode();
@@ -184,6 +209,7 @@ public class BookShelf1L extends BookShelfSecondary {
         return containsBook;
     }
 
+    @Override
     public void addBookToShelf(String genre, String title, String author) {
         int row = genre.hashCode();
         int col = title.hashCode();
@@ -195,6 +221,7 @@ public class BookShelf1L extends BookShelfSecondary {
 
     }
 
+    @Override
     public Map<String, Map<String, String>> removeBookFromShelf(String genre,
             String title) {
         assert key != null : "Violation of: key is not null";
@@ -207,6 +234,7 @@ public class BookShelf1L extends BookShelfSecondary {
         return book;
     }
 
+    @Override
     public void removeFromListOfBooksInProgress(
             Map<String, Map<String, Integer>> book) {
         assert this.listOfBooksInProgress
@@ -235,7 +263,8 @@ public class BookShelf1L extends BookShelfSecondary {
     /*
      * Removes the first book in list of books in progress
      */
-    public Map.Pair<String, Map.Pair<String, String>> removeFromListOfBooksInProgress() {
+    @Override
+    public Map<String, Map<String, String>> removeFromListOfBooksInProgress() {
         assert this.listOfBooksInProgress
                 .size() > 0 : "Violation of: There are books in listOfBooksInProgress";
         return this.listOfBooksInProgress.pop();
@@ -244,29 +273,35 @@ public class BookShelf1L extends BookShelfSecondary {
         this.numberOfBooksToRead--;
     }
 
+    @Override
     public void addToListOfBooksInProgress(
             Map<String, Map<String, Integer>> book) {
         this.listOfBooksInProgress.push(book);
         this.numberOfBooksInProgress++;
     }
 
+    @Override
     public String genre(Map<String, Map<String, String>> book) {
         return book.removeAny.key();
     }
 
+    @Override
     public Map<String, String> titleAuthor(
             Map<String, Map<String, String>> book) {
         return book.removeAny.value();
     }
 
+    @Override
     public String title(Map<String, String> titleAuthor) {
         return titleAuthor.removeAny.key();
     }
 
+    @Override
     public String author(Map<String, String> titleAuthor) {
         return titleAuthor.removeAny.value();
     }
 
+    @Override
     public void createNewGoal(int numBooksToRead) {
         this.numberOfBooksToRead = numBooksToRead;
     }
