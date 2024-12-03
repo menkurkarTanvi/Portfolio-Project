@@ -1,8 +1,8 @@
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Stack;
+package src;
 
+import components.map.Map;
 import components.map.Map1L;
+import components.stack.Stack;
 
 /**
  * {@code Bookshelf} represented as as a two dimensional Map array where the
@@ -64,7 +64,7 @@ public class BookShelf1L extends BookShelfSecondary {
     @SuppressWarnings("unchecked")
     private void createNewRep(int rowSize, int colSize, int numBooksToRead) {
 
-        this.bookShelf = new HashMap<String, Map<String, String>>[rowSize][colSize];
+        this.bookShelf = new Map1L[rowSize][colSize];
         for (int i = 0; i < this.bookShelf.length; i++) {
             for (int j = 0; j < this.bookShelf[0].length; j++) {
                 this.bookShelf[i][j] = new Map1L<String, Map<String, String>>();
@@ -126,7 +126,7 @@ public class BookShelf1L extends BookShelfSecondary {
     public final void transferFrom(BookShelf source) {
         assert source != null : "Violation of: source is not null";
         assert source != this : "Violation of: source is not this";
-        assert source instanceof BookShelf1L<?, ?> : ""
+        assert source instanceof BookShelf1L : ""
                 + "Violation of: source is of dynamic type BookShelf1L<?,?>";
 
         BookShelf1L localSource = (BookShelf1L) source;
@@ -179,7 +179,7 @@ public class BookShelf1L extends BookShelfSecondary {
                 this.numberOfBooksToRead);
         for (int i = 0; i < this.bookShelf.length; i++) {
             for (int j = 0; i < this.bookShelf[0].length; j++) {
-                b[i][j] = this.bookShelf[i][j];
+                b.bookShelf[i][j] = this.bookShelf[i][j];
             }
         }
         this.transferFrom(b);
@@ -191,6 +191,15 @@ public class BookShelf1L extends BookShelfSecondary {
         Map<String, Map<String, String>> book = new Map1L<>();
         while (book.size() == 0) {
             int row = (int) (Math.random() * this.bookShelf.length);
+            int col = (int) (Math.random() * this.bookShelf[0].length);
+            book.transferFrom(this.bookShelf[row][col]);
+        }
+        return book;
+    }
+
+    public Map<String, Map<String, String>> removeAnyBook(int row) {
+        Map<String, Map<String, String>> book = new Map1L<>();
+        while (book.size() == 0) {
             int col = (int) (Math.random() * this.bookShelf[0].length);
             book.transferFrom(this.bookShelf[row][col]);
         }
@@ -224,25 +233,23 @@ public class BookShelf1L extends BookShelfSecondary {
     @Override
     public Map<String, Map<String, String>> removeBookFromShelf(String genre,
             String title) {
-        assert key != null : "Violation of: key is not null";
         int row = genre.hashCode();
         int col = title.hashCode();
         Map<String, Map<String, String>> book = this.bookShelf[row][col];
         //Add empty spot
-        this.bookShelf[row][col] = new Map<String, Map<String, String>>();
+        this.bookShelf[row][col] = new Map1L<String, Map<String, String>>();
         this.numberOfBooksInShelf--;
         return book;
     }
 
-    @Override
     public void removeFromListOfBooksInProgress(
             Map<String, Map<String, Integer>> book) {
         assert this.listOfBooksInProgress
-                .size() > 0 : "Violation of: There are books in listOfBooksInProgress";
+                .length() > 0 : "Violation of: There are books in listOfBooksInProgress";
         boolean removed = false;
         Stack<Map<String, Map<String, String>>> s = this.listOfBooksInProgress
                 .newInstance();
-        while (this.listOfBooksInProgress.size() > 0 && !removed) {
+        while (this.listOfBooksInProgress.length() > 0 && !removed) {
             Map<String, Map<String, String>> b = this.listOfBooksInProgress
                     .pop();
             if (b.equals(book)) {
@@ -251,59 +258,60 @@ public class BookShelf1L extends BookShelfSecondary {
                 s.push(b);
             }
         }
-        while (s.size() > 0) {
+        while (s.length() > 0) {
             Map<String, Map<String, String>> b2 = s.pop();
             this.listOfBooksInProgress.push(b2);
         }
         this.numberOfBooksInProgress--;
         this.numberOfBooksRead++;
         this.numberOfBooksToRead--;
+        if (this.numberOfBooksRead == this.numberOfBooksToRead) {
+            this.goalReached = true;
+        }
     }
 
     /*
      * Removes the first book in list of books in progress
      */
     @Override
-    public Map<String, Map<String, String>> removeFromListOfBooksInProgress() {
+    public void removeFromListOfBooksInProgress() {
         assert this.listOfBooksInProgress
-                .size() > 0 : "Violation of: There are books in listOfBooksInProgress";
-        return this.listOfBooksInProgress.pop();
+                .length() > 0 : "Violation of: There are books in listOfBooksInProgress";
         this.numberOfBooksInProgress--;
         this.numberOfBooksRead++;
         this.numberOfBooksToRead--;
+        if (this.numberOfBooksRead == this.numberOfBooksToRead) {
+            this.goalReached = true;
+        }
     }
 
-    @Override
     public void addToListOfBooksInProgress(
-            Map<String, Map<String, Integer>> book) {
+            Map<String, Map<String, String>> book) {
         this.listOfBooksInProgress.push(book);
         this.numberOfBooksInProgress++;
     }
 
-    @Override
     public String genre(Map<String, Map<String, String>> book) {
-        return book.removeAny.key();
+        return book.removeAny().key();
     }
 
-    @Override
     public Map<String, String> titleAuthor(
             Map<String, Map<String, String>> book) {
-        return book.removeAny.value();
+        return book.removeAny().value();
     }
 
-    @Override
     public String title(Map<String, String> titleAuthor) {
-        return titleAuthor.removeAny.key();
+        return titleAuthor.removeAny().key();
     }
 
-    @Override
     public String author(Map<String, String> titleAuthor) {
-        return titleAuthor.removeAny.value();
+        return titleAuthor.removeAny().value();
     }
 
     @Override
     public void createNewGoal(int numBooksToRead) {
         this.numberOfBooksToRead = numBooksToRead;
+        this.goalReached = false;
     }
 
 }

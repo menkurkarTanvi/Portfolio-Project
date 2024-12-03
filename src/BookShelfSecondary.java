@@ -9,11 +9,13 @@ public abstract class BookShelfSecondary implements BookShelf {
         int len = this.length();
         int n = 31;
         int hashCode = 0;
+        int i = 0;
         while (len > 0) {
             char c = this.substring(i, i + 1);
             hashCode += c * (Math.pow(n, len - 1));
             n--;
             len--;
+            i++;
         }
 
         return hashCode;
@@ -39,9 +41,9 @@ public abstract class BookShelfSecondary implements BookShelf {
         BookShelf b = (BookShelf) obj;
         boolean areEqual = true;
         while (!b.isEmpty() && areEqual) {
-            Map.Pair<String, Map.Pair<String, String>> book = b.removeAnyBook();
-            if (!this.shelfContainsBook(book.genre(),
-                    book.titleAndAuthor().title)) {
+            Map<String, Map<String, String>> book = b.removeAnyBook();
+            if (!this.shelfContainsBook(this.genre(book),
+                    this.title(this.titleAuthor(book)))) {
                 areEqual = false;
             }
         }
@@ -64,12 +66,12 @@ public abstract class BookShelfSecondary implements BookShelf {
 
     @Override
     public String recommendedNextBookTitle() {
-        Map.Pair<String, Map.Pair<String, String>> book = this
+        Map<String, Map<String, String>> book = this
                 .removeFromListOfBooksInProgress();
         this.addToListOfBooksInProgress(book);
-        Map.Pair<String, Map.Pair<String, String>> book2 = booksOfGenre
-                .removeAnyBook(book.genre.hashCode());
-        return book2.titleAuthor().title();
+        Map<String, Map<String, String>> book2 = booksOfGenre
+                .removeAnyBook(this.genre(book).hashCode());
+        return this.title(this.titleAuthor(book2))
     }
 
     @Override
@@ -82,9 +84,8 @@ public abstract class BookShelfSecondary implements BookShelf {
             int len = this.numBooksInRow(i);
             if (len > max) {
                 max = len;
-                Map.Pair<String, Map.Pair<String, String>> book = this
-                        .removeAnyBook(i);
-                mostPopular = book.genre();
+                Map<String, Map<String, String>> book = this.removeAnyBook(i);
+                mostPopularGenre = this.genre(book);
             }
             i++;
         }
@@ -93,7 +94,7 @@ public abstract class BookShelfSecondary implements BookShelf {
 
     @Override
     public String recommendedAuthor() {
-        Map<String, Map<String, String>> book = b.removeAnyBook();
-        return book.titleAuthor().author();
+        Map<String, Map<String, String>> book = this.removeAnyBook();
+        return this.author(this.titleAuthor(book));
     }
 }
