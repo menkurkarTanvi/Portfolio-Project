@@ -1,8 +1,9 @@
 package src;
 
-import java.util.Map;
+import components.map.Map;
+import components.standard.Standard;
 
-public interface BookShelfKernel {
+public interface BookShelfKernel extends Standard<BookShelf> {
 
         public Map<String, Map<String, String>>[][] displayShelf();
 
@@ -16,7 +17,7 @@ public interface BookShelfKernel {
 
         public Map<String, Map<String, String>> removeAnyBook();
 
-        public Map<String, Map<String, String>> removeAnyBook(int row);
+        public Map<String, Map<String, String>> removeBookFromRow(int row);
 
         public boolean shelfContainsBooks(String genre, String title);
 

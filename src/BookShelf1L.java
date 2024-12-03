@@ -67,7 +67,7 @@ public class BookShelf1L extends BookShelfSecondary {
         this.bookShelf = new Map1L[rowSize][colSize];
         for (int i = 0; i < this.bookShelf.length; i++) {
             for (int j = 0; j < this.bookShelf[0].length; j++) {
-                this.bookShelf[i][j] = new Map1L<String, Map<String, String>>();
+                this.bookShelf[i][j] = new Map1L<>();
             }
         }
         this.numberOfBooksRead = numBooksToRead;
@@ -188,7 +188,7 @@ public class BookShelf1L extends BookShelfSecondary {
 
     @Override
     public Map<String, Map<String, String>> removeAnyBook() {
-        Map<String, Map<String, String>> book = new Map1L<String, Map<String, String>>();
+        Map<String, Map<String, String>> book = new Map1L<>();
         while (book.size() == 0) {
             int row = (int) (Math.random() * this.bookShelf.length);
             int col = (int) (Math.random() * this.bookShelf[0].length);
@@ -198,7 +198,7 @@ public class BookShelf1L extends BookShelfSecondary {
     }
 
     @Override
-    public Map<String, Map<String, String>> removeAnyBook(int row) {
+    public Map<String, Map<String, String>> removeBookFromRow(int row) {
         Map<String, Map<String, String>> book = new Map1L<>();
         while (book.size() == 0) {
             int col = (int) (Math.random() * this.bookShelf[0].length);
@@ -243,6 +243,7 @@ public class BookShelf1L extends BookShelfSecondary {
         return book;
     }
 
+    @Override
     public void removeFromListOfBooksInProgress(
             Map<String, Map<String, Integer>> book) {
         assert this.listOfBooksInProgress
@@ -286,25 +287,30 @@ public class BookShelf1L extends BookShelfSecondary {
         }
     }
 
+    @Override
     public void addToListOfBooksInProgress(
             Map<String, Map<String, String>> book) {
         this.listOfBooksInProgress.push(book);
         this.numberOfBooksInProgress++;
     }
 
+    @Override
     public String genre(Map<String, Map<String, String>> book) {
         return book.removeAny().key();
     }
 
+    @Override
     public Map<String, String> titleAuthor(
             Map<String, Map<String, String>> book) {
         return book.removeAny().value();
     }
 
+    @Override
     public String title(Map<String, String> titleAuthor) {
         return titleAuthor.removeAny().key();
     }
 
+    @Override
     public String author(Map<String, String> titleAuthor) {
         return titleAuthor.removeAny().value();
     }
@@ -313,6 +319,10 @@ public class BookShelf1L extends BookShelfSecondary {
     public void createNewGoal(int numBooksToRead) {
         this.numberOfBooksToRead = numBooksToRead;
         this.goalReached = false;
+    }
+
+    public int numberOfBooksInShelf() {
+        return this.numberOfBooksInShelf;
     }
 
 }
