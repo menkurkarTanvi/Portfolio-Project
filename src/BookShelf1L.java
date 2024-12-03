@@ -188,7 +188,7 @@ public class BookShelf1L extends BookShelfSecondary {
 
     @Override
     public Map<String, Map<String, String>> removeAnyBook() {
-        Map<String, Map<String, String>> book = new Map1L<>();
+        Map<String, Map<String, String>> book = new Map1L<String, Map<String, String>>();
         while (book.size() == 0) {
             int row = (int) (Math.random() * this.bookShelf.length);
             int col = (int) (Math.random() * this.bookShelf[0].length);
@@ -197,6 +197,7 @@ public class BookShelf1L extends BookShelfSecondary {
         return book;
     }
 
+    @Override
     public Map<String, Map<String, String>> removeAnyBook(int row) {
         Map<String, Map<String, String>> book = new Map1L<>();
         while (book.size() == 0) {
@@ -212,7 +213,7 @@ public class BookShelf1L extends BookShelfSecondary {
         int row = genre.hashCode();
         int col = title.hashCode();
         Map<String, Map<String, String>> book = this.bookShelf[row][col];
-        if (book.size() > 0 && book.removeAny().hasKey(title)) {
+        if (book.size() > 0 && book.removeAny().key().equals(title)) {
             containsBook = true;
         }
         return containsBook;

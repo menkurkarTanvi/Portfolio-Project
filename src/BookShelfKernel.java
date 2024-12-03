@@ -3,6 +3,7 @@ package src;
 import java.util.Map;
 
 public interface BookShelfKernel {
+
         public Map<String, Map<String, String>>[][] displayShelf();
 
         public boolean isEmpty();
@@ -14,6 +15,8 @@ public interface BookShelfKernel {
         public void updateShelfSize(int newRowSize, int newColSize);
 
         public Map<String, Map<String, String>> removeAnyBook();
+
+        public Map<String, Map<String, String>> removeAnyBook(int row);
 
         public boolean shelfContainsBooks(String genre, String title);
 
