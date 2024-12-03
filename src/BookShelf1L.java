@@ -275,7 +275,7 @@ public class BookShelf1L extends BookShelfSecondary {
      * Removes the first book in list of books in progress
      */
     @Override
-    public void removeFromListOfBooksInProgress() {
+    public Map<String, Map<String, Integer>> removeFromListOfBooksInProgress() {
         assert this.listOfBooksInProgress
                 .length() > 0 : "Violation of: There are books in listOfBooksInProgress";
         this.numberOfBooksInProgress--;

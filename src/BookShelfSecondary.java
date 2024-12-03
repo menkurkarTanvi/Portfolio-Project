@@ -69,9 +69,9 @@ public abstract class BookShelfSecondary implements BookShelf {
         Map<String, Map<String, String>> book = this
                 .removeFromListOfBooksInProgress();
         this.addToListOfBooksInProgress(book);
-        Map<String, Map<String, String>> book2 = booksOfGenre
+        Map<String, Map<String, String>> book2 = this
                 .removeAnyBook(this.genre(book).hashCode());
-        return this.title(this.titleAuthor(book2))
+        return this.title(this.titleAuthor(book2));
     }
 
     @Override

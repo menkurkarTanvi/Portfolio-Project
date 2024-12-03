@@ -28,7 +28,7 @@ public interface BookShelfKernel {
         public void removeFromListOfBooksInProgress(
                         Map<String, Map<String, Integer>> book);
 
-        public void removeFromListOfBooksInProgress();
+        public Map<String, Map<String, Integer>> removeFromListOfBooksInProgress();
 
         public void addToListOfBooksInProgress(
                         Map<String, Map<String, Integer>> book);
