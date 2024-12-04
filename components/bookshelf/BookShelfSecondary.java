@@ -1,4 +1,4 @@
-package src;
+package components.bookshelf;
 
 import components.map.Map;
 
@@ -41,7 +41,7 @@ public abstract class BookShelfSecondary implements BookShelf {
         boolean areEqual = true;
         while (!b.isEmpty() && areEqual) {
             Map<String, Map<String, String>> book = b.removeAnyBook();
-            if (!this.shelfContainsBook(this.genre(book),
+            if (!this.shelfContainsBooks(this.genre(book),
                     this.title(this.titleAuthor(book)))) {
                 areEqual = false;
             }

@@ -1,4 +1,4 @@
-package src;
+package components.bookshelf;
 
 import components.map.Map;
 import components.map.Map1L;
@@ -245,7 +245,7 @@ public class BookShelf1L extends BookShelfSecondary {
 
     @Override
     public void removeFromListOfBooksInProgress(
-            Map<String, Map<String, Integer>> book) {
+            Map<String, Map<String, String>> book) {
         assert this.listOfBooksInProgress
                 .length() > 0 : "Violation of: There are books in listOfBooksInProgress";
         boolean removed = false;
@@ -276,7 +276,7 @@ public class BookShelf1L extends BookShelfSecondary {
      * Removes the first book in list of books in progress
      */
     @Override
-    public Map<String, Map<String, Integer>> removeFromListOfBooksInProgress() {
+    public Map<String, Map<String, String>> removeFromListOfBooksInProgress() {
         assert this.listOfBooksInProgress
                 .length() > 0 : "Violation of: There are books in listOfBooksInProgress";
         this.numberOfBooksInProgress--;
@@ -324,6 +324,10 @@ public class BookShelf1L extends BookShelfSecondary {
 
     public int numberOfBooksInShelf() {
         return this.numberOfBooksInShelf;
+    }
+
+    public boolean goalReached() {
+        return this.goalReached;
     }
 
 }

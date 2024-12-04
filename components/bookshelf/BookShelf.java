@@ -1,4 +1,4 @@
-package src;
+package components.bookshelf;
 
 public interface BookShelf extends BookShelfKernel {
 
