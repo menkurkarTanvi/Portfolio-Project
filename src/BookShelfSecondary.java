@@ -1,6 +1,6 @@
 package src;
 
-import java.util.Map;
+import components.map.Map;
 
 public abstract class BookShelfSecondary implements BookShelf {
 
