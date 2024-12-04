@@ -1,6 +1,7 @@
 package src;
 
 public interface BookShelf extends BookShelfKernel {
+
     public boolean hasGenre();
 
     public String recommendedNextBookTitle();

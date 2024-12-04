@@ -6,12 +6,12 @@ public abstract class BookShelfSecondary implements BookShelf {
 
     @Override
     public int hashCode() {
-        int len = this.length();
+        int len = this.toString().length();
         int n = 31;
         int hashCode = 0;
         int i = 0;
         while (len > 0) {
-            char c = this.substring(i, i + 1);
+            char c = this.toString().charAt(i);
             hashCode += c * (Math.pow(n, len - 1));
             n--;
             len--;
@@ -23,8 +23,7 @@ public abstract class BookShelfSecondary implements BookShelf {
 
     @Override
     public String toString() {
-        this.displayShelf();
-        return "";
+        return "" + this;
     }
 
     @Override
@@ -70,7 +69,7 @@ public abstract class BookShelfSecondary implements BookShelf {
                 .removeFromListOfBooksInProgress();
         this.addToListOfBooksInProgress(book);
         Map<String, Map<String, String>> book2 = this
-                .removeAnyBook(this.genre(book).hashCode());
+                .removeBookFromRow(this.genre(book).hashCode());
         return this.title(this.titleAuthor(book2));
     }
 
@@ -84,7 +83,8 @@ public abstract class BookShelfSecondary implements BookShelf {
             int len = this.numBooksInRow(i);
             if (len > max) {
                 max = len;
-                Map<String, Map<String, String>> book = this.removeAnyBook(i);
+                Map<String, Map<String, String>> book = this
+                        .removeBookFromRow(i);
                 mostPopularGenre = this.genre(book);
             }
             i++;

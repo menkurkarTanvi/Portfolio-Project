@@ -175,7 +175,7 @@ public class BookShelf1L extends BookShelfSecondary {
 
     @Override
     public void updateShelfSize(int newRowSize, int newColSize) {
-        BookShelf b = new BookShelf1L(newRowSize, newColSize,
+        BookShelf1L b = new BookShelf1L(newRowSize, newColSize,
                 this.numberOfBooksToRead);
         for (int i = 0; i < this.bookShelf.length; i++) {
             for (int j = 0; i < this.bookShelf[0].length; j++) {
@@ -285,6 +285,7 @@ public class BookShelf1L extends BookShelfSecondary {
         if (this.numberOfBooksRead == this.numberOfBooksToRead) {
             this.goalReached = true;
         }
+        return this.listOfBooksInProgress.pop();
     }
 
     @Override
