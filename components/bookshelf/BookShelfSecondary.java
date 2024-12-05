@@ -23,7 +23,7 @@ public abstract class BookShelfSecondary implements BookShelf {
 
     @Override
     public String toString() {
-        return "" + this;
+        return "";
     }
 
     @Override
@@ -34,24 +34,42 @@ public abstract class BookShelfSecondary implements BookShelf {
         if (obj == null) {
             return false;
         }
-        if (!(obj instanceof BookShelfSecondary)) {
+        if (!(obj instanceof BookShelf)) {
             return false;
         }
-        BookShelf b = (BookShelf) obj;
+        BookShelf1L b = (BookShelf1L) obj;
+        if ((this.isEmpty() && !b.isEmpty())
+                || (!this.isEmpty() && b.isEmpty())) {
+            return false;
+        }
+        if (b.sizeOfShelf() != this.sizeOfShelf()) {
+            return false;
+        }
+        if (b.lengthOfShelf() != this.lengthOfShelf()) {
+            return false;
+        }
+        if (this.isEmpty() && b.isEmpty()) {
+            return true;
+        }
         boolean areEqual = true;
         while (!b.isEmpty() && areEqual) {
             Map<String, Map<String, String>> book = b.removeAnyBook();
-            if (!this.shelfContainsBooks(this.genre(book),
-                    this.title(this.titleAuthor(book)))) {
-                areEqual = false;
+            while (book.size() > 0 && areEqual) {
+                Map.Pair<String, Map<String, String>> p = book.removeAny();
+                Map.Pair<String, String> p2 = p.value().removeAny();
+                if (!this.shelfContainsBooks(p.key(), p2.key())) {
+                    areEqual = false;
+                }
+                b.addBookToShelf(p.key(), p2.key(), p2.value());
             }
         }
         return areEqual;
     }
 
+    @Override
     public boolean hasGenre(String genre) {
         boolean hasGenre = false;
-        if (this.numBooksInRow(genre.hashCode()) > 0) {
+        if (this.numBooksInRow((genre.hashCode())) > 0) {
             hasGenre = true;
         }
         return hasGenre;

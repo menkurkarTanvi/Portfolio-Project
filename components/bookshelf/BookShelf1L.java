@@ -1,5 +1,7 @@
 package components.bookshelf;
 
+import java.util.Arrays;
+
 import components.map.Map;
 import components.map.Map1L;
 import components.stack.Stack;
@@ -106,7 +108,6 @@ public class BookShelf1L extends BookShelfSecondary {
      * Standard methods -------------------------------------------------------
      */
 
-    @SuppressWarnings("unchecked")
     @Override
     public final BookShelf1L newInstance() {
         try {
@@ -131,13 +132,29 @@ public class BookShelf1L extends BookShelfSecondary {
 
         BookShelf1L localSource = (BookShelf1L) source;
         this.bookShelf = localSource.bookShelf;
+        this.goalReached = localSource.goalReached;
+        this.numberOfBooksInProgress = localSource.numberOfBooksInProgress;
+        this.numberOfBooksRead = localSource.numberOfBooksRead;
         this.numberOfBooksToRead = localSource.numberOfBooksToRead;
+        this.numberOfBooksInProgress = localSource.numberOfBooksInProgress;
+        this.listOfBooksInProgress = localSource.listOfBooksInProgress;
         localSource.createNewRep(DEFAULT_ROW_SIZE, DEFAULT_COLUMN_SIZE, 0);
     }
 
     @Override
-    public Map<String, Map<String, String>>[][] displayShelf() {
-        return this.bookShelf;
+    public void displayShelf() {
+        System.out.print(Arrays.deepToString(this.bookShelf));
+    }
+
+    //Hashtable
+    @Override
+    public int mod(int a, int b) {
+        assert b > 0 : "Violation of: b > 0";
+        int mod = a % b;
+        if (mod < 0) {
+            mod += b;
+        }
+        return mod;
     }
 
     @Override
@@ -156,13 +173,10 @@ public class BookShelf1L extends BookShelfSecondary {
     @Override
     public int numBooksInRow(int row) {
         int numBooksInRow = 0;
-        boolean emptyBook = false;
-        for (int i = 0; i < this.bookShelf[row].length && !emptyBook; i++) {
+        for (int i = 0; i < this.bookShelf[row].length; i++) {
             Map<String, Map<String, String>> book = this.bookShelf[row][i];
-            if (book.size() == 0) {
-                emptyBook = true;
-            } else {
-                numBooksInRow++;
+            if (book.size() != 0) {
+                numBooksInRow += book.size();
             }
         }
         return numBooksInRow;
@@ -174,11 +188,16 @@ public class BookShelf1L extends BookShelfSecondary {
     }
 
     @Override
+    public int sizeOfShelf() {
+        return this.bookShelf.length;
+    }
+
+    @Override
     public void updateShelfSize(int newRowSize, int newColSize) {
         BookShelf1L b = new BookShelf1L(newRowSize, newColSize,
                 this.numberOfBooksToRead);
         for (int i = 0; i < this.bookShelf.length; i++) {
-            for (int j = 0; i < this.bookShelf[0].length; j++) {
+            for (int j = 0; j < this.bookShelf[0].length; j++) {
                 b.bookShelf[i][j] = this.bookShelf[i][j];
             }
         }
@@ -210,8 +229,8 @@ public class BookShelf1L extends BookShelfSecondary {
     @Override
     public boolean shelfContainsBooks(String genre, String title) {
         boolean containsBook = false;
-        int row = genre.hashCode();
-        int col = title.hashCode();
+        int row = this.mod(genre.hashCode(), this.bookShelf.length);
+        int col = this.mod(title.hashCode(), this.bookShelf[0].length);
         Map<String, Map<String, String>> book = this.bookShelf[row][col];
         if (book.size() > 0 && book.removeAny().key().equals(title)) {
             containsBook = true;
@@ -221,12 +240,13 @@ public class BookShelf1L extends BookShelfSecondary {
 
     @Override
     public void addBookToShelf(String genre, String title, String author) {
-        int row = genre.hashCode();
-        int col = title.hashCode();
+        int row = this.mod(genre.hashCode(), this.bookShelf.length);
+        int col = this.mod(title.hashCode(), this.bookShelf[0].length);
         Map<String, String> titleAuthor = new Map1L<>();
         titleAuthor.add(title, author);
-        Map<String, Map<String, String>> book = this.bookShelf[row][col];
+        Map<String, Map<String, String>> book = new Map1L<>();
         book.add(genre, titleAuthor);
+        this.bookShelf[row][col].add(genre, titleAuthor);
         this.numberOfBooksInShelf++;
 
     }
@@ -234,11 +254,21 @@ public class BookShelf1L extends BookShelfSecondary {
     @Override
     public Map<String, Map<String, String>> removeBookFromShelf(String genre,
             String title) {
-        int row = genre.hashCode();
-        int col = title.hashCode();
+        int row = this.mod(genre.hashCode(), this.bookShelf.length);
+        int col = this.mod(title.hashCode(), this.bookShelf[0].length);
         Map<String, Map<String, String>> book = this.bookShelf[row][col];
-        //Add empty spot
-        this.bookShelf[row][col] = new Map1L<String, Map<String, String>>();
+        // Add empty spot
+        Map<String, Map<String, String>> b = new Map1L<>();
+        while (book.size() > 0) {
+            Map.Pair<String, Map<String, String>> p = book.removeAny();
+            Map.Pair<String, String> p2 = p.value().removeAny();
+            if (!p2.key().equals(title)) {
+                Map<String, String> titleAuthor = new Map1L<>();
+                titleAuthor.add(p2.key(), p2.value());
+                b.add(p.key(), titleAuthor);
+            }
+        }
+        this.bookShelf[row][col].transferFrom(b);
         this.numberOfBooksInShelf--;
         return book;
     }

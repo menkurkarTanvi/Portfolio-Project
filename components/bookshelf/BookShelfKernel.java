@@ -7,7 +7,7 @@ public interface BookShelfKernel extends Standard<BookShelf> {
         /*
          *
          */
-        public Map<String, Map<String, String>>[][] displayShelf();
+        public void displayShelf();
 
         /*
          *
@@ -24,10 +24,18 @@ public interface BookShelfKernel extends Standard<BookShelf> {
          */
         public int lengthOfShelf();
 
+        /**
+         *
+         *
+         */
+        public int sizeOfShelf();
+
         /*
          *
          */
         public void updateShelfSize(int newRowSize, int newColSize);
+
+        public int mod(int a, int b);
 
         /*
          *

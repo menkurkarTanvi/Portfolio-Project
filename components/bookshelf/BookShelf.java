@@ -2,7 +2,7 @@ package components.bookshelf;
 
 public interface BookShelf extends BookShelfKernel {
 
-    public boolean hasGenre();
+    public boolean hasGenre(String genre);
 
     public String recommendedNextBookTitle();
 
